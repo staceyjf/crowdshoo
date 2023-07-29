@@ -1,24 +1,15 @@
 <%- include('./partials/header') %>
-
-          <form class="d-flex">
-            <input class="form-control me-2" type="text" placeholder="Search" style="background-color: white">
-            <button class="btn btn-primary" type="button">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
-
-  <main>
-        <!--could change class to container if i didn't want it to span the full width-->
-        <div class="container-fluid p-5 my-0 bg-dark text-white">
-          <div class="row">
-            <h1><%= title %></h1>
-            <div class="col-sm-3">.col-sm-3</div>
-            <div class="col-sm-3">.col-sm-3</div>
-            <div class="col-sm-3">.col-sm-3</div>
-            <div class="col-sm-3">.col-sm-3</div>
-    
-          </div> 
-        </div>
+    <!--could change class to container if i didn't want it to span the full width-->
+    <div class="container-fluid p-5 my-0 bg-dark text-white">
+        <h1><%= title %></h1>
+        <ul class="list-group">
+            <li class="list-group-item">myFav #1</li>
+            <li class="list-group-item">myFav #2</li>
+            <li class="list-group-item">TmyFav #3</li>
+            <li class="list-group-item">myFav #4</li>
+            <li class="list-group-item">myFav #5</li>
+            <li class="list-group-item">TmyFav #6</li>
+          </ul>
+    </div>
 
 <%- include('./partials/footer') %>

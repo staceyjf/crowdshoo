@@ -20,21 +20,34 @@
         <div class="collapse navbar-collapse" id="mynavbar">
           <ul class="navbar-nav me-auto">
             <% if (user) { %>
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0)">myFav</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0)">Add a myFav</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">LOG OUT</a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">myFavs curated</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">myFav</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">Add a myFav</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">LOG OUT</a>
+              </li>
             <% } else { %> 
-            <li class="nav-item">
-              <a class="nav-link" href="/auth/google">LOG IN</a>
-            </li> 
-            <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0)">myFavs curated</a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/google">LOG IN</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">myFavs curated</a>
+              </li>
             <% } %>
           </ul>
+          
+          <form class="d-flex">
+            <input class="form-control me-2" type="text" placeholder="Search" style="background-color: white">
+            <button class="btn btn-primary" type="button">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <main>
