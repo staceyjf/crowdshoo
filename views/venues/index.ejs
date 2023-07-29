@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+  <!--could change class to container if i didn't want it to span the full width-->
+  <div class="container-fluid p-5 my-0 bg-dark text-white">
+      <h1><%= title %></h1>
+      <ul class="list-group">
+        <% venues.forEach((v) => { %>
+          <li class="list-group-item">
+            <%= v.venueName %>
+            <%= v.myFavCategory %>
+            <%= v.ratings.ranking %> 
+          </li>
+          <% }); %>
+        </ul>
+  </div>
+
+<%- include('../partials/footer') %>

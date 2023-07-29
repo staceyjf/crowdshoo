@@ -14,6 +14,8 @@ require('./config/passport'); // connecting to passport
 
 // require routers here
 var indexRouter = require('./routes/index');
+var reviewsRouter = require('./routes/reviews');
+var venuesRouter = require('./routes/venues');
 
 var app = express();
 
@@ -47,6 +49,10 @@ app.use(function(req, res, next){
 
 // add additional routers here as they need to be below the middleware
 app.use('/', indexRouter);
+app.use('/venues', venuesRouter);
+// Mount these routers to root because not all 
+// paths for a related/nested resource begin the same
+app.use('/', reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

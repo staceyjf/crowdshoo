@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ratingSchema = new Schema ({
     topTip: String,
-    rating: {
+    ranking: {
         type: Number,
         min: 1,
         max: 5,
