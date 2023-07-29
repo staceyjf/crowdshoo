@@ -8,7 +8,9 @@ const userSchema = new Schema({
       required: true
     },
     email: String,
-    avatar: String // URL to the img
+    avatar: String, // URL to the img
+    venues: [{ type: Schema.Types.ObjectId, ref: 'Venue' }],
+    ratings: [{ type: Schema.Types.ObjectId, ref: 'Ratings' }],
   }, {
     timestamps: true
   });
