@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const reviewsController = require('../controllers/reviews')
+const reviewsController = require('../controllers/ratings')
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 /* GET users listing. */

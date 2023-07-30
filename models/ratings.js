@@ -21,7 +21,8 @@ const ratingSchema = new Schema ({
         type: Schema.Types.ObjectId, // need this to confirm a 'review' is assigned to the user.  
         // better than using username etc to dot his 
         ref: 'Venue',
+        required: true 
       },
 })
 
-module.exports = ('Ratings', ratingSchema);
+module.exports = mongoose.model('Ratings', ratingSchema);

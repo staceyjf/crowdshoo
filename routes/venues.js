@@ -8,11 +8,11 @@ params that can be extracted from the url - if you need to pass params to the fu
 function to handle the request
 */
 
-// GET /venues  View all venues regardless of logged in status
-router.get('/', venuesController.index);
+// GET /venues  View all venues submitted by a user
+router.get('/', ensureLoggedIn, venuesController.index);
 
-// // POST /venues/:id - Add the logged in user's _id to a myFav array
-// router.post('/:id', ensureLoggedIn, venuesController.addMyFav);
+// // GET /venues/all View all venues regardless of logged in status
+// router.get('/', venuesController.allVenues);
 
 // GET /venues/new 
 //MUST be below new route /	View a form for submitting a venue (be sure to define this route before the show route)
@@ -20,10 +20,10 @@ router.get('/', venuesController.index);
 router.get('/new', ensureLoggedIn, venuesController.new);
 
 // GET /venues/:id View the details of a venue
-router.get('/:id', venuesController.show);
+router.get('/:id', ensureLoggedIn, venuesController.show);
 
-// // POST /venues - Handle the new venue form being submitted
-// router.post('/', ensureLoggedIn, venuesController.create);
+// POST /venues - Handle the new venue form being submitted
+router.post('/', ensureLoggedIn, venuesController.create);
 
 // // GET /venues/:id/edit  - View a form for editing a book (restrict to user who submitted the book)
 // router.get('/:id/edit', venuesController.edit);

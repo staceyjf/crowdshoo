@@ -1,3 +1,22 @@
 <%- include('../partials/header') %>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm bg-dark text-white p-3">Venue name:</div>
+        <div class="col-sm bg-dark text-white p-3"><%= venue.venueName %></div>
+    </div> 
+    <div class="row">
+        <div class="col-sm bg-dark text-white p-3">myFav Category:</div>
+        <div class="col-sm bg-dark text-white p-3"><%= venue.myFavCategory %></div>
+    </div>
+    <div class="row">
+        <div class="col-sm bg-dark text-white p-3">myFav Rating:</div>
+        <div class="col-sm bg-dark text-white p-3"><%= starRanking %></div>
+    </div>
+    <div class="row">
+        <div class="col-sm bg-dark text-white p-3">myFav Top tip:</div>
+        <div class="col-sm bg-dark text-white p-3"><%= userReview.topTip %></div>
+    </div>    
+</div>  
+
 <%- include('../partials/footer') %>

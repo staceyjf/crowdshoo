@@ -7,7 +7,7 @@
       <div class="mb-3 mt-3">
         <label for="venue" class="form-label">Venue:</label>
         <input type="text" class="form-control" id="venue" placeholder="Enter a new myFav" name="venueName" required>
-        <div class="valid-feedback">Valid.</div>
+        <div class="valid-feedback"></div>
         <div class="invalid-feedback">Please fill out this field.</div>
       </div>
     <!---------myFav Category----------->
@@ -19,31 +19,31 @@
             <option value="happyhour">Happy Hour</option>
             <option value="familyTime">Family Time</option>
         </select>
-        <div class="valid-feedback">Valid.</div>
+        <div class="valid-feedback"></div>
         <div class="invalid-feedback">Please select relevant category</div>
       </div>
     <!---------Rating----------->
       <div class="mb-3">
-        <label for="ratings" class="form-label" id="ratings">Rate this venue:</label>
+        <label for="ratings" class="form-label" id="ratings">Rate this venue (select one):</label>
         <div class="ratings">
-          <input type="radio" id="star5" name="ratings.ranking" value="5" required>
-          <label for="star5" title="5 stars">&#9733;</label><br>
-          <input type="radio" id="star4" name="ratings.ranking" value="4" required>
-          <label for="star4" title="4 stars">&#9733;&#9733;</label><br>
-          <input type="radio" id="star3" name="ratings.ranking" value="3" required>
+          <input type="radio" id="star5" name="ranking" value="5" required>
+          <label for="star5" title="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</label><br>
+          <input type="radio" id="star4" name="ranking" value="4" required>
+          <label for="star4" title="4 stars">&#9733;&#9733;&#9733;&#9733;</label><br>
+          <input type="radio" id="star3" name="ranking" value="3" required>
           <label for="star3" title="3 stars">&#9733;&#9733;&#9733;</label><br>
-          <input type="radio" id="star2" name="ratings.ranking" value="2" required>
-          <label for="star2" title="2 stars">&#9733;&#9733;&#9733;&#9733;</label><br>
-          <input type="radio" id="star1" name="ratings.ranking" value="1" required>
-          <label for="star1" title="1 star">&#9733;&#9733;&#9733;&#9733;&#9733;</label><br>
-          <div class="valid-feedback">Valid.</div>
+          <input type="radio" id="star2" name="ranking" value="2" required>
+          <label for="star2" title="2 stars">&#9733;&#9733;</label><br>
+          <input type="radio" id="star1" name="ranking" value="1" required>
+          <label for="star1" title="1 star">&#9733;</label><br>
+          <div class="valid-feedback"></div>
           <div class="invalid-feedback">Please give a rating</div>
         </div>
       </div>
     <!---------Top tip----------->
       <div class="mb-3">
         <label for="topTip" class="form-label">Top tip:</label>
-        <input type="topTip" class="form-control" id="topTip" placeholder="Leave a top tip for the crowdShoo community" name="ratings.topTip">
+        <input type="text" class="form-control" id="topTip" placeholder="Leave a top tip for the crowdShoo community" name="topTip">
         <!--how do i make this field un-ticked-->
       </div>
 
