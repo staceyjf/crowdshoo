@@ -18,7 +18,7 @@ const venueSchema = new Schema({
       type: String,
       required: true, // The name is required
     },
-    user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     ratings: [{ type: Schema.Types.ObjectId, ref: 'Ratings' }]
   }, {
     timestamps: true

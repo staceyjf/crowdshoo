@@ -38,13 +38,13 @@ async function index(req, res) {
 
     // view to be rendered / object containing relevant data for the view engine
     res.render('venues/index', { 
-      title: 'myFav community favs', 
+      title: 'myFav favs', 
       venues, 
       averageStarRanking }); 
   }
 
 async function show(req, res) {
-    const venue = await Venue.findById(req.params.id).populate('user').populate('ratings');
+    const venue = await Venue.findById(req.params.id).populate('users').populate('ratings');
     
     // find the associated review from the logged in user
     const userReview = await Ratings.findOne({ 
@@ -99,7 +99,7 @@ async function create(req, res) {
 
     // updating the rating and user arrays within the venue model
     venue.ratings = [rating._id]; // updated the rating array within venue model
-    venue.user = [ratingInput.user];
+    venue.users = [ratingInput.user];
     await venue.save(); // save venue document post the rating add
 
     // associating the user with a venue and a review arrays
