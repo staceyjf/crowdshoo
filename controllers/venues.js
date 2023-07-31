@@ -42,19 +42,26 @@ async function index(req, res) {
 }
 
 async function myFavs(req, res) {
-  const user = await User.findById(req.user._id); // finds 
+  const user = await User.findById(req.user._id); 
 
   const allVenues = [];
   for (let i = 0; i < user.venues.length; i++) {
     const venue = await Venue.findById(user.venues[i]);
       allVenues.push(venue);
-      console.log(allVenues)
   }
 
-  console.log(allVenues);
+  const allRatings = [];
+  for (let i = 0; i < user.venues.length; i++) {
+    const rating = await Ratings.findById(user.ratings[i]);
+      allRatings.push(rating);
+      console.log(allRatings)
+  }
+
+  console.log(allRatings);
   res.render('venues/myFavs', {
     title: 'A myFav venue map', 
-    allVenues});
+    allVenues,
+    allRatings});
 };
 
 async function show(req, res) {

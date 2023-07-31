@@ -5,20 +5,20 @@
     <h1><%= title %></h1>
     <ul class="list-group">
       <% if (allVenues.length > 0) { %>
-        <% allVenues.forEach((v) => { %>
+        <% for (i = 0; i < allRatings.length; i++) {%>
+        <!---HAVE A NORMAL FOR LOOP SO YOU CAN LOOP THROUGH BOTH arrays-->
           <li class="list-group-item">
-            <%= v.venueName %><br>
-            <%= v.myFavCategory %><br>
-            <a href="/venues/<%= v._id %>" class="btn btn-primary">Details</a>
+            <%= allVenues[i].venueName %><br>
+            <%= allVenues[i].myFavCategory %><br>
+            <%= allRatings[i].ranking %><br>
+            <a href="/venues/<%= allVenues[i]._id %>" class="btn btn-primary">Details</a>
           </li>
-        <% }); %>
+        <% }; %>
       <% } else { %>
         <p>Try add a fav</p>
       <% }; %>
     </ul>
     <br>
 </div>
-
-
   
 <%- include('../partials/footer') %>
