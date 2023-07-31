@@ -4,13 +4,10 @@ const User = require('../models/user');
 
 module.exports = {
     index,
-    // allVenues,
+    myFavs,
     new: newVenue,
     show,
     create
-    // edit,
-    // update,
-    // delete
 };
 
 // sharing between index & show - converts our ranking nums to stars
@@ -21,27 +18,44 @@ function rankingToStars(ratingNum) {
   return fullStars + emptyStars;
 }
 
+// this shows every venue regardless of user
 async function index(req, res) {
-    const venues = await Venue.find({});
-    const ratings = await Ratings.find({}); // Retrieve all ratings
-    
-    // average ranking calculations
-    const totalRatings = ratings.length;
-    let totalRanking = 0;
+  const venues = await Venue.find({});
+  const ratings = await Ratings.find({}); // Retrieve all ratings
+  
+  // average ranking calculations
+  const totalRatings = ratings.length;
+  let totalRanking = 0;
 
-    ratings.forEach((rating) => {
-      totalRanking += rating.ranking;
-    });
+  ratings.forEach((rating) => {
+    totalRanking += rating.ranking;
+  });
 
-    let avgRanking = (totalRanking / totalRatings);
-    let averageStarRanking = rankingToStars(avgRanking);
+  let avgRanking = (totalRanking / totalRatings);
+  let averageStarRanking = rankingToStars(avgRanking);
 
-    // view to be rendered / object containing relevant data for the view engine
-    res.render('venues/index', { 
-      title: 'myFav favs', 
-      venues, 
-      averageStarRanking }); 
+  // NEED TO CHECK VIEW
+  res.render('venues/allVenues', { 
+    title: 'Venues from all users', 
+    venues, 
+    averageStarRanking }); 
+}
+
+async function myFavs(req, res) {
+  const user = await User.findById(req.user._id); // finds 
+
+  const allVenues = [];
+  for (let i = 0; i < user.venues.length; i++) {
+    const venue = await Venue.findById(user.venues[i]);
+      allVenues.push(venue);
+      console.log(allVenues)
   }
+
+  console.log(allVenues);
+  res.render('venues/myFavs', {
+    title: 'A myFav venue map', 
+    allVenues});
+};
 
 async function show(req, res) {
     const venue = await Venue.findById(req.params.id).populate('users').populate('ratings');

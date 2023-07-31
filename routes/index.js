@@ -32,7 +32,7 @@ router.get('/oauth2callback', passport.authenticate (
 // OAuth logout route
 router.get('/logout', function(req, res){
   req.logout(function() {
-    res.redirect('/venues');
+    res.redirect('/'); // CHANGE THIS WHEN I'VE CREATED A PAGE FOR THE MAP
   });
 });
 

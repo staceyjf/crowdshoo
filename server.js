@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session'); // creates the cookie so needs a .env
 var passport = require('passport'); // hands AOut
-var methodOverride = require('method-override'); // mounting this to be able to delet
+var methodOverride = require('method-override'); // mounting this to be able to delete
 
 require('dotenv').config();
 // connect to the database with AFTER the config vars are processed
@@ -28,6 +28,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method')); 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // session

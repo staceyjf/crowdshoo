@@ -1,22 +1,24 @@
 <%- include('../partials/header') %>
 
   <!---ADD MAP HERE-->
-
   <div class="container-fluid p-5 my-0 bg-dark text-white">
-      <h1><%= title %></h1>
-      <ul class="list-group">
-        <% venues.forEach((v) => { %>
+    <h1><%= title %></h1>
+    <ul class="list-group">
+      <% if (allVenues.length > 0) { %>
+        <% allVenues.forEach((v) => { %>
           <li class="list-group-item">
             <%= v.venueName %><br>
             <%= v.myFavCategory %><br>
-            <%= averageStarRanking %><br>
             <a href="/venues/<%= v._id %>" class="btn btn-primary">Details</a>
           </li>
         <% }); %>
-      </ul>
-      <br>
-      <a href="/venues/new" class="btn btn-primary">Add a MyFav</a>
-  </div>
+      <% } else { %>
+        <p>Try add a fav</p>
+      <% }; %>
+    </ul>
+    <br>
+</div>
+
 
   
 <%- include('../partials/footer') %>

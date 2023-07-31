@@ -16,7 +16,26 @@
     <div class="row">
         <div class="col-sm bg-dark text-white p-3">myFav Top tip:</div>
         <div class="col-sm bg-dark text-white p-3"><%= userReview.topTip %></div>
-    </div>    
+    </div>
+
+<!-- 
+    <form action="/venues/<%= venue._id %>/edit?_method=DELETE" method="POST">
+        <button type="submit">Delete venue</button>
+    </form> -->
+
+    <!-- <form action="/venues/<%= venue._id %>?_method=DELETE" method="POST">
+        <button type="submit">Edit venue</button>
+    </form> -->
+    <br>
+    <form action="/ratings/<%= venue._id %>?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-primary">DELETE venue</button>
+    </form>
+
+    <!-- <form action="/ratings/<%= venue._id %>?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-primary">EDIT venue</button>
+    </form> -->
+
+    <br>
     <a href="/venues" class="btn btn-primary">Back to myFav map</a>
 </div>  
 
