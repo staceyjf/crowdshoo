@@ -4,7 +4,7 @@ const venuesController = require('../controllers/venues')
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 // GET /venues  View all venues regardless of logged in status
-router.get('/', ensureLoggedIn, venuesController.index);
+router.get('/', venuesController.index);
 
 // // GET /venues/myFavs View a map of the logged in user's favourite venues
 router.get('/myFavs', venuesController.myFavs);
