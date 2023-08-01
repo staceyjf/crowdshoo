@@ -122,9 +122,12 @@ async function create(req, res) { // adds the venue to the all venues
     // if the event name is new, add new document. If it is not, update document
     if (!checkVenue) { 
         venue = await Venue.create(req.body); // creates a venue document
-        console.log('venue created')
+        console.log('venue created');
         await venue.save(); // save venue document post the rating add
-    } 
+    } else {
+        venue = await Venue.findOne({ venueName: addedVenueName })
+        console.log('venue found')
+    }
 
     console.log(venue);
 
