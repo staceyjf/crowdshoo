@@ -125,24 +125,16 @@ let rndUserAvatar = null;
 if (generatedRating) {
   rndTopTip = generatedRating.topTip;
   const rndUserIds = generatedRating.user;
-  console.log("---------1--------------");
-  console.log(rndUserIds);
 
   for (const user of venue.users) {
-    console.log(user._id);
     if (user._id.toString() === rndUserIds.toString()) {
       rndUserAvatar = user.avatar;
-      console.log("---------2--------------");
-      console.log(rndUserAvatar);
       break;
     }
   }
 } else {
   return null; // e.js won't display insider's tip if !generatedRating
 }
-
-console.log("-----------------------");
-console.log('');
 
   res.render('venues/show', {
     title: 'A myFav venue listing',
@@ -171,8 +163,7 @@ async function create(req, res) { // adds the venue to the all venues
     let venue;
     let addedVenueName = req.body.venueName;
     // let addedVenueName = new RegExp(req.body.venueName, "i");
-    console.log(req.user._id);
-
+   
     // check if the venue is already in the venue collection 
     const checkVenue = await Venue.findOne({ venueName: addedVenueName });
 

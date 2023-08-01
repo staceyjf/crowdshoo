@@ -9,15 +9,33 @@
         <div class="col-sm bg-dark text-white p-3">myFav Category:</div>
         <div class="col-sm bg-dark text-white p-3"><%= venue.myFavCategory %></div>
     </div>
+<!-- try to hid button when not editing for ratings -->
     <div class="row">
         <div class="col-sm bg-dark text-white p-3">myFav Rating:</div>
-        <div class="col-sm bg-dark text-white p-3"><%= stars %></div>
+        <div class="col-sm bg-dark text-white p-3">
+            <%= stars %>
+        </div>
+        <div class="col-sm bg-dark text-white p-3">
+            <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
+                <button type="submit" class="btn btn-primary" name="ranking">&times</button>
+            </form>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm bg-dark text-white p-3">myFav Top tip:</div>
-        <div class="col-sm bg-dark text-white p-3"><%= userRatingbyVenue.topTip %></div>
+        <div class="col-sm bg-dark text-white p-3">
+            <%= userRatingbyVenue.topTip %>
+        </div>
+        <div class="col-sm bg-dark text-white p-3">
+            <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
+                <button type="submit" class="btn btn-primary" name="topTip">&times</button>
+            </form>
+        </div>
     </div>
-</div>  
+</div>   
+
+<!-- will need to hid this when not editing -->
+
 
 <!-- Google map info -->
 <div class="container">
@@ -40,11 +58,7 @@
 
 <!-- buttons -->
 <div class="container">
-    <!-- 
-    <form action="/venues/<%= venue._id %>/edit?_method=DELETE" method="POST">
-        <button type="submit">Delete venue</button>
-    </form> -->
-
+    
     <!-- <form action="/venues/<%= venue._id %>?_method=DELETE" method="POST">
         <button type="submit">Edit venue</button>
     </form> -->
