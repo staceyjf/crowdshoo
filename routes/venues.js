@@ -7,7 +7,7 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 router.get('/', venuesController.index);
 
 // // GET /venues/myFavs View a map of the logged in user's favourite venues
-router.get('/myFavs', venuesController.myFavs);
+router.get('/myFavs', ensureLoggedIn, venuesController.myFavs);
 
 // GET /venues/new 
 //MUST be below new route /	View a form for submitting a venue (be sure to define this route before the show route)

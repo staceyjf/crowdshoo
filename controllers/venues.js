@@ -62,22 +62,27 @@ async function index(req, res) {
 async function myFavs(req, res) { 
   const user = await User.findById(req.user._id); 
 
-  const allVenues = [];
-  for (let i = 0; i < user.venues.length; i++) {
-    const venue = await Venue.findById(user.venues[i]);
-      allVenues.push(venue);
+  const name_Cat_RankingByVenue = [];
+  const allRatings = user.ratings;
+  console.log(allRatings);
+  for (let i = 0; i < allRatings.length; i++) {
+    const rating = await Ratings.findById(allRatings[i]);
+    const venueId = rating.venue;
+    const venue = await Venue.findById(venueId);
+    name_Cat_RankingByVenue.push({
+      venueId: venue._id,
+      venueName: venue.venueName,
+      myFavCat: venue.myFavCategory,
+      stars: rankingNumsToStars(rating.ranking),
+      topTips:rating.topTip
+    });
+      console.log(name_Cat_RankingByVenue);
   }
-
-  const allRatings = [];
-  for (let i = 0; i < user.venues.length; i++) {
-    const rating = await Ratings.findById(user.ratings[i]);
-      allRatings.push(rating);
-  }
-
+  
   res.render('venues/myFavs', {
     title: 'A myFav venue map', 
-    allVenues,
-    allRatings});
+    name_Cat_RankingByVenue
+    });
 };
 
 async function show(req, res) {
