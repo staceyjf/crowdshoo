@@ -3,38 +3,27 @@ const Ratings = require('../models/ratings');
 const User = require('../models/user');
 
 module.exports = {
-    edit,
-    delete: removeVenue_myFav
-    // update
+  update,
+  delete: removeVenue_myFav
 };
 
 // View a form for editing a rating & myFav Cat of venues (restrict to user who submitted the rating)
-async function edit(req, res) {
-    // find the venue that matches the :id params in the URL and user of the current logged in user
-    const venue = await Venue.findById(req.params.id).populate('users').populate('ratings');
-    
-  console.log("---------venue-------------");
-  console.log('');
-  console.log(venue);
+async function update(req, res) {
+  try {
+    const updatedRating = await Ratings.findOneAndUpdate(
+      {venue: req.params.id, user: req.user._id},
+      // update object with updated properties
+      req.body,
+      // options object {new: true} returns updated doc
+      {new: true}
+    );
 
-    // loop through ratings to match logged user with userId of rating
-    for (const rating of venue.ratings) {
-      console.log("---------rating Id-------------");
-      console.log('');
-      console.log(rating._id);
-      if (user._id.toString() === rndUserIds.toString()) {
-        ratingToEdit = rating;
-        break;
-      }
-    }
-
-    if (!venue) return res.redirect('/venues');
-    
-    res.render(`/venues/${venue._id}`,
-    venue,
-    ratingToEdit
-     ); 
-};
+    return res.redirect(`/venues/myFavs`);
+  } catch (err) {
+    console.log(err.message);
+    return res.redirect('/venues/myFavs');
+  }
+}
 
 /* started as deleteReview and now afraid to move*/
 async function removeVenue_myFav(req, res, next) {
