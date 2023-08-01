@@ -9,8 +9,8 @@ router.get('/', venuesController.index);
 // // GET /venues/myFavs View a map of the logged in user's favourite venues
 router.get('/myFavs', ensureLoggedIn, venuesController.myFavs);
 
-// GET /venues/new 
-//MUST be below new route /	View a form for submitting a venue (be sure to define this route before the show route)
+// GET /venues/new View a form for submitting a venue (be sure to define this route before the show route)
+//MUST be below new route 
 // it would mean that the route is designed to handle requests with the "/new" part as a dynamic parameter. In this context, "/new" is not a fixed part of the URL but a placeholder for a variable value that can change with each request.
 router.get('/new', ensureLoggedIn, venuesController.new);
 

@@ -84,27 +84,114 @@ async function myFavs(req, res) {
     });
 };
 
+// Shows the details of a venue
+// Function to generate a random integer between 0 and max (exclusive)
 async function show(req, res) {
-    const venue = await Venue.findById(req.params.id).populate('users').populate('ratings');
-    
-    // find the associated review from the logged in user. There will always be a star ranking as this was a required field.
-    const userReview = await Ratings.findOne({ 
-      venue: venue._id, 
-      user: req.user._id
-    });
+  const venue = await Venue.findById(req.params.id).populate('users').populate('ratings');
 
-    // pass through stars 
-    let userRanking = userReview.ranking;
-    let starRanking = rankingNumsToStars(userRanking);
-
-    res.render('venues/show', { 
-      title: 'A myFav venue listing', 
-      venue,
-      userReview,
-      starRanking
-    });
+  let userRatingbyVenue;
+  // Find the review from the logged-in user - can query user as i have populated users and ratings as above
+ for (i = 0; i < venue.ratings.length; i++) {
+  if (venue.ratings[i].user.toString() === req.user._id.toString() && venue.ratings[i].venue.toString() === req.params.id.toString()) {
+    userRatingbyVenue = venue.ratings[i];
+    break // exit when we find the user
+    }
   }
 
+  console.log(userRatingbyVenue);
+
+  // Pass through stars()
+  let stars = rankingNumsToStars(userRatingbyVenue.ranking); // ranking is a required field so will always be present
+
+  function getRandomNumber(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  // Pick a random tip top from the community
+  const max = venue.ratings.length;
+  let rndNum = getRandomNumber(max);
+
+  // Ensure the randomly selected rating does not belong to the user
+  let rndRating = venue.ratings[rndNum];
+  // console.log(rndRating);
+  if (rndRating.user.toString() === req.user._id.toString()) {
+    // If the random rating belongs to the user, generate a new random index
+    rndNum = getRandomNumber(max);
+    rndRating = venue.ratings[rndNum];
+  }
+
+  // Access the top tip and user's avatar from the randomly selected rating
+  const rndTopTip = rndRating.topTip;
+  const rndUserAvatar = rndRating.user.avatar;
+
+  res.render('venues/show', {
+    title: 'A myFav venue listing',
+    venue,
+    userRatingbyVenue,
+    stars,
+    rndTopTip,
+    rndUserAvatar,
+  });
+}
+
+
+
+
+// async function show(req, res) { 
+//     const venue = await Venue.findById(req.params.id).populate('users').populate('ratings');;
+    
+//     // find the associated review from the logged in user. There will always be a star ranking as this was a required field.
+//     const rating = await Ratings.findOne({ 
+//       venue: venue._id, 
+//       user: req.user._id
+//     });
+
+//     // pass through stars()
+//     let userRanking = rating.ranking;
+//     let stars = rankingNumsToStars(userRanking);
+
+//     // pick a random tip top from the community
+//     function getRandomNumber(max) {
+//       return Math.floor(Math.random() * max); //
+//     }
+    
+//     const max = venue.ratings.length;
+//     const rndNum = getRandomNumber(max);
+
+//     console.log(rndNum);
+
+//     // pick a random rating
+//     const rndRating = venue.ratings[rndNum];
+//     let rndTopTip;
+
+
+//     function getRndTopTip(r) {
+//       rndTopTip = r.topTip;
+//       rndUser = r.user;
+//       rndUserObj = venue.users.find(rndUser);
+//       rndUserImg = rndUserObj.avatar;
+//       return rndUserImg, rndTopTip;
+//     }
+
+//     // check that the rating doesn't belong to the user
+//     if (venue.ratings.length > 1) {
+//       rndRating.user === req.user._id ? getRandomNumber(max) :  getRndTopTip(rndRating);
+//     };
+
+    
+//     console.log(rndTopTip);
+
+//     res.render('venues/show', { 
+//       title: 'A myFav venue listing', 
+//       venue,
+//       rating,
+//       stars, 
+//       rndTopTip, 
+//       rndUserImg
+//     });
+//   }
+
+// View a form for submitting a venue (be sure to define this route before the show route)
 function newVenue(req, res) {
     // We'll want to be able to render an  
     // errorMsg if the create action fails
@@ -113,6 +200,7 @@ function newVenue(req, res) {
       errorMsg: '' });
   }
 
+// Handles the new venue form being submitted
 async function create(req, res) { // adds the venue to the all venues
   try {
      /* Step 1: check to see if the event document already exists */
@@ -134,8 +222,6 @@ async function create(req, res) { // adds the venue to the all venues
         console.log('venue found')
     }
 
-    console.log(venue);
-
     /* Step 2: update the review collection */
     // extract relevant inputs from req.body for the ratings model
     const ratingInput = {
@@ -144,8 +230,7 @@ async function create(req, res) { // adds the venue to the all venues
       user: req.user._id,
       venue: venue._id
     };
-    console.log(ratingInput);
-
+  
     // associating a review with a user and venue - will always need a review doc to be created as they are unique
     const rating = await Ratings.create(ratingInput); 
     console.log(rating._id);
