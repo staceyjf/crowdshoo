@@ -16,12 +16,17 @@ async function update(req, res) {
       req.body,
       // options object {new: true} returns updated doc
       {new: true}
-    );
+    ).populate('venue');
 
-    return res.redirect(`/venues/myFavs`);
+    console.log('---------hello-------')
+    console.log(updatedRating.venue._id);
+    const venueId = updatedRating.venue._id 
+
+
+    return res.redirect(`/venues/${ venueId }`);
   } catch (err) {
     console.log(err.message);
-    return res.redirect('/venues/myFavs');
+    return res.redirect(`/venues/${ venueId }`);
   }
 }
 

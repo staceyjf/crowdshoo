@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET /auth/google */
-router.get('/auth/google', passport.authenticate( // user will be presented the consent screen if they haven’t previously consented.
+// user will be presented the consent screen if they haven’t previously consented.
+router.get('/auth/google', passport.authenticate(  
   'google', // passport's google strategy is being used
   {
     scope: ['profile', 'email'],
@@ -28,8 +29,7 @@ router.get('/oauth2callback', passport.authenticate (
   }
 ))
 
-/* GET /logout */
-// OAuth logout route
+/* GET /logout - OAuth logout */
 router.get('/logout', function(req, res){
   req.logout(function() {
     res.redirect('/'); // CHANGE THIS WHEN I'VE CREATED A PAGE FOR THE MAP
@@ -37,3 +37,6 @@ router.get('/logout', function(req, res){
 });
 
 module.exports = router;
+
+/* GET /venues - bestTime API
+*/
