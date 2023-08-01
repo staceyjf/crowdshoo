@@ -98,98 +98,62 @@ async function show(req, res) {
     }
   }
 
-  console.log(userRatingbyVenue);
-
   // Pass through stars()
   let stars = rankingNumsToStars(userRatingbyVenue.ranking); // ranking is a required field so will always be present
 
-  function getRandomNumber(max) {
+  // Pick a random tip top from the community
+  function getRndNum(max) {
     return Math.floor(Math.random() * max);
   }
 
-  // Pick a random tip top from the community
-  const max = venue.ratings.length;
-  let rndNum = getRandomNumber(max);
-
   // Ensure the randomly selected rating does not belong to the user
-  let rndRating = venue.ratings[rndNum];
-  // console.log(rndRating);
-  if (rndRating.user.toString() === req.user._id.toString()) {
-    // If the random rating belongs to the user, generate a new random index
-    rndNum = getRandomNumber(max);
-    rndRating = venue.ratings[rndNum];
-  }
+  function getRndRating(venue, user) {
+  let rndRating = venue.ratings[getRndNum(venue.ratings.length)];
 
-  // Access the top tip and user's avatar from the randomly selected rating
-  const rndTopTip = rndRating.topTip;
-  const rndUserAvatar = rndRating.user.avatar;
+  // while the rnd user's id matches the curr user id, run the getRndNum() again
+  while (rndRating.user.toString() === user._id.toString()) {
+    rndRating = venue.ratings[getRndNum(venue.ratings.length)];
+  }
+  return rndRating;
+}
+
+// call the getRndRating
+const generatedRating = getRndRating(venue, req.user);
+let rndTopTip;
+let rndUserAvatar = null;
+
+if (generatedRating) {
+  rndTopTip = generatedRating.topTip;
+  const rndUserIds = generatedRating.user;
+  console.log("---------1--------------");
+  console.log(rndUserIds);
+
+  for (const user of venue.users) {
+    console.log(user._id);
+    if (user._id.toString() === rndUserIds.toString()) {
+      rndUserAvatar = user.avatar;
+      console.log("---------2--------------");
+      console.log(rndUserAvatar);
+      break;
+    }
+  }
+} else {
+  return null; // e.js won't display insider's tip if !generatedRating
+}
+
+console.log("-----------------------");
+console.log('');
 
   res.render('venues/show', {
     title: 'A myFav venue listing',
     venue,
     userRatingbyVenue,
     stars,
+    generatedRating,
     rndTopTip,
-    rndUserAvatar,
+    rndUserAvatar
   });
 }
-
-
-
-
-// async function show(req, res) { 
-//     const venue = await Venue.findById(req.params.id).populate('users').populate('ratings');;
-    
-//     // find the associated review from the logged in user. There will always be a star ranking as this was a required field.
-//     const rating = await Ratings.findOne({ 
-//       venue: venue._id, 
-//       user: req.user._id
-//     });
-
-//     // pass through stars()
-//     let userRanking = rating.ranking;
-//     let stars = rankingNumsToStars(userRanking);
-
-//     // pick a random tip top from the community
-//     function getRandomNumber(max) {
-//       return Math.floor(Math.random() * max); //
-//     }
-    
-//     const max = venue.ratings.length;
-//     const rndNum = getRandomNumber(max);
-
-//     console.log(rndNum);
-
-//     // pick a random rating
-//     const rndRating = venue.ratings[rndNum];
-//     let rndTopTip;
-
-
-//     function getRndTopTip(r) {
-//       rndTopTip = r.topTip;
-//       rndUser = r.user;
-//       rndUserObj = venue.users.find(rndUser);
-//       rndUserImg = rndUserObj.avatar;
-//       return rndUserImg, rndTopTip;
-//     }
-
-//     // check that the rating doesn't belong to the user
-//     if (venue.ratings.length > 1) {
-//       rndRating.user === req.user._id ? getRandomNumber(max) :  getRndTopTip(rndRating);
-//     };
-
-    
-//     console.log(rndTopTip);
-
-//     res.render('venues/show', { 
-//       title: 'A myFav venue listing', 
-//       venue,
-//       rating,
-//       stars, 
-//       rndTopTip, 
-//       rndUserImg
-//     });
-//   }
 
 // View a form for submitting a venue (be sure to define this route before the show route)
 function newVenue(req, res) {

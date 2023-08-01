@@ -25,11 +25,18 @@
 </div>
 
 <!-- rnd Community top tip -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm bg-dark text-white p-3">Insider top tip <br><%= rndTopTip %></div>
+<% if (generatedRating) { %>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm bg-dark text-white p-3">Insider top tip <br>
+                <div class="col-sm bg-dark text-white p-3">
+                    <img src="<%= rndUserAvatar %>" alt="User profile pic of the insider's tip">
+                </div>
+                <%= rndTopTip %>
+            </div>
+        </div>
     </div>
-</div>
+<% } %> 
 
 <!-- buttons -->
 <div class="container">
