@@ -20,43 +20,44 @@ function rankingNumsToStars(ratingNum) {
 
 // this shows every venue regardless of user
 async function index(req, res) {
-  const allVenues = await Venue.find({}); // Retrieves all the venues across all users
+  try {
+    const allVenues = await Venue.find({}); // Retrieves all the venues across all users
 
-  // for each venue, isolate all the reviews associated with it irrespective of user
-  // const ratingsByVenueName = {};
-  // for (let i = 0; i < allVenues.length; i++) {
-  //   const venue = allVenues[i];
-  //   const venueName = venue.venueName;
-  //   const ratingId = venue.ratings;
-  //   console.log(venue);
-  //   console.log(venueName);
-  //   console.log(ratingId);
-  // }
+    // for each venue, calculation an average ranking score across all users for that venue
+    const avgStars_CatByVenueName = [];
+    for (let i = 0; i < allVenues.length; i++) {
+      // find the venue and the ratingId
+      const venueObj = allVenues[i];
+      const ratingArr = venueObj.ratings;
 
-  // console.log(ratingsByVenueName);
-  
-    // const ratingId = allVenues[i].ratings;
-    // const ratings = await Ratings.findById(ratingId);
-    // const ranking = ratings.ranking;
-    // allRatings.push(ranking);
-    // console.log(allRatings);
-  // }
+      let totalRanking = 0;
+      for (let x = 0; x < ratingArr.length; x++ ) {
+         // find all related rating objects in ratings collections
+        const ratingId = ratingArr[x];
+        const ratingObj = await Ratings.findById(ratingId);
+        // calculate a total ranking score by adding the ranking each loop
+        totalRanking += ratingObj.ranking
+      }
 
-  // // average ranking calculations
-  // const totalRatings = allRatings.length;
-  // let totalRanking = allRatings.reduce((acc, rating) => {
-  //   return acc + rating.ranking
-  // }, 0)
+      // for that total ranking score, find the avg and convert the number to stars
+      const averageRanking = totalRanking / ratingArr.length;
+      avgStars_CatByVenueName.push({
+        venueName: venueObj.venueName,
+        myFavCat: venueObj.myFavCategory,
+        stars: rankingNumsToStars(averageRanking),
+      });
+    }
 
-
-  // let avgRanking = (totalRanking / totalRatings);
-  // let averageStarRanking = rankingNumsToStars(avgRanking);
- 
-  res.render('venues/allVenues', { 
-    title: 'Venues from all users', 
-    allVenues
-  }); 
+    res.render('venues/allVenues', {
+      title: 'Venues from all users',
+      allVenues,
+      avgStars_CatByVenueName,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
+
 // shows favorite places that are associated with an individual user 
 async function myFavs(req, res) { 
   const user = await User.findById(req.user._id); 

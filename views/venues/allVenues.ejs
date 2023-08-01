@@ -3,11 +3,12 @@
 <div class="container-fluid p-5 my-0 bg-dark text-white">
     <h1><%= title %></h1>
     <ul class="list-group">
-      <% if (allVenues.length > 0) { %>
-        <% allVenues.forEach((v) => { %>
+      <% if (avgStars_CatByVenueName.length > 0) { %>
+        <% avgStars_CatByVenueName.forEach((v) => { %>
           <li class="list-group-item">
             <%= v.venueName %><br>
-            <%= v.myFavCategory %><br>
+            <%= v.myFavCat %><br>
+            <%= v.stars %><br>
             <a href="/venues/<%= v._id %>" class="btn btn-primary">Details</a>
           </li>
         <% }); %>
