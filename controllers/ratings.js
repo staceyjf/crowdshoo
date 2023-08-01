@@ -26,6 +26,10 @@ async function deleteRating(req, res, next) {
     let user = await User.findOne({ _id: req.user._id });
     let rating = await Ratings.findOne({venue: req.params.id, user: req.user._id});
 
+    console.log(venue);
+    console.log(user);
+    console.log(rating);
+
     // if there are any issues with the above, re-direct
     if (!rating || !user || !venue ) return res.redirect('/venues'); 
     

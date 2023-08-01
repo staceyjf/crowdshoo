@@ -60,23 +60,22 @@ async function index(req, res) {
 
 // shows favorite places that are associated with an individual user 
 async function myFavs(req, res) { 
-  const user = await User.findById(req.user._id); 
+  const user = await User.findById(req.user._id); // find user
 
   const name_Cat_RankingByVenue = [];
-  const allRatings = user.ratings;
-  console.log(allRatings);
+  const allRatings = user.ratings; // find ratings related to user
+
   for (let i = 0; i < allRatings.length; i++) {
-    const rating = await Ratings.findById(allRatings[i]);
-    const venueId = rating.venue;
-    const venue = await Venue.findById(venueId);
-    name_Cat_RankingByVenue.push({
+    const rating = await Ratings.findById(allRatings[i]); // for each rating,
+    const venueId = rating.venue; 
+    const venue = await Venue.findById(venueId); // find the venue obj
+    name_Cat_RankingByVenue.push({ // push relevant into obj for .ejs
       venueId: venue._id,
       venueName: venue.venueName,
       myFavCat: venue.myFavCategory,
       stars: rankingNumsToStars(rating.ranking),
       topTips:rating.topTip
     });
-      console.log(name_Cat_RankingByVenue);
   }
   
   res.render('venues/myFavs', {

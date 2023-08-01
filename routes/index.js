@@ -23,7 +23,7 @@ router.get('/auth/google', passport.authenticate( // user will be presented the 
 router.get('/oauth2callback', passport.authenticate ( 
   'google',
   {
-    successRedirect: '/', // CHANGE THIS WHEN I'VE CREATED A PAGE FOR THE MAP
+    successRedirect: '/venues/myFavs', // CHANGE THIS WHEN I'VE CREATED A PAGE FOR THE MAP
     failureRedirect: '/'
   }
 ))

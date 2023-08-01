@@ -14,8 +14,11 @@
             <a href="/venues/<%= name_Cat_RankingByVenue[i].venueId %>" class="btn btn-primary">Details</a>
           </li>
         <% }; %>
+        <br>
+        <a href="/venues/new" class="btn btn-primary">Add another myFav</a>
       <% } else { %>
         <p>Try add a fav</p>
+        <a href="/venues/new" class="btn btn-primary">Add a myFav</a>
       <% }; %>
     </ul>
     <br>
