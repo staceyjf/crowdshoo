@@ -1,8 +1,14 @@
 <%- include('../partials/header') %>
 
+<header>
+  <h1 class="site-heading text-center text-faded d-none d-lg-block">
+      <span class="site-heading-upper text-primary mb-3">Explore</span>
+      <span class="site-heading-lower"><%= title %></span>
+  </h1>
+</header>
+
   <!---ADD MAP HERE-->
   <div class="container-fluid p-5 my-0 bg-dark text-white">
-    <h1><%= title %></h1>
     <ul class="list-group">
       <% if (name_Cat_RankingByVenue.length > 0) { %>
         <% for (i = 0; i < name_Cat_RankingByVenue.length; i++) {%>
@@ -15,10 +21,12 @@
           </li>
         <% }; %>
         <br>
+        <div class="container">
         <a href="/venues/new" class="btn btn-primary">Add another myFav</a>
       <% } else { %>
         <p>Try add a fav</p>
         <a href="/venues/new" class="btn btn-primary">Add a myFav</a>
+        </div>
       <% }; %>
     </ul>
     <br>

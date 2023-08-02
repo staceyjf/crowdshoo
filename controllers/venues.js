@@ -79,7 +79,7 @@ async function myFavs(req, res) {
   }
   
   res.render('venues/myFavs', {
-    title: 'A myFav venue map', 
+    title: 'My Favourites', 
     name_Cat_RankingByVenue
     });
 };
@@ -137,7 +137,7 @@ if (generatedRating) {
 }
 
   res.render('venues/show', {
-    title: 'A myFav venue listing',
+    title: 'a myfav',
     venue,
     userRatingbyVenue,
     stars,
@@ -152,7 +152,7 @@ function newVenue(req, res) {
     // We'll want to be able to render an  
     // errorMsg if the create action fails
     res.render('venues/new', { 
-      title: 'Add a new myFav venue', 
+      title: 'myFav venue', 
       errorMsg: '' });
   }
 

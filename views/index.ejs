@@ -1,11 +1,30 @@
 <%- include('./partials/header') %>
-    <!--could change class to container if i didn't want it to span the full width-->
-    <div class="container-fluid p-5 my-0 bg-dark text-white">
-    <h1><%= title %></h1>
 
-    <h2>THIS IS WHERE AN INTRO PAGE WOULD GO</h2>
-    </div>
-
-    <p><%= JSON.stringify(data) %></p>
+    <section class="page-section about-heading">
+        <div class="container">
+            <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="../public/images/intro.jpg" alt="happy barista serving">
+            <div class="about-heading-content">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-10 mx-auto">
+                        <div class="bg-faded rounded p-5">
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-upper">Hate Crowds, Love Fun</span>
+                                <span class="section-heading-lower"><%= title %></span>
+                            </h2>
+                            <p>Hate crowds but <em>love</em>...happy hours, indoor softplay, and other fun stuff</p>
+                            <p class="mb-0">
+                                At CrowdShoo, we help you ‘shoo’ away from crowded places, allowing you to enjoy your favorite venues without the hassle of large crowds.
+                                <br>
+                                <br>
+                                crowd sourced comments included...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <%- include('./partials/footer') %>
+
+    <!-- <p><%= JSON.stringify(data) %></p> -->
