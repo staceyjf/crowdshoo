@@ -1,15 +1,27 @@
 <%- include('../partials/header') %>
-
 <div class="container mt-3">
     <h3><%= title %></h3>
+
+
     <form action="/venues" class="was-validated" method="POST">
-    <!---------venue----------->
-      <div class="mb-3 mt-3">
-        <label for="venue" class="form-label">Venue:</label>
-        <input type="text" class="form-control" id="venue" placeholder="Enter a new myFav" name="venueName" required>
-        <div class="valid-feedback"></div>
-        <div class="invalid-feedback">Please fill out this field.</div>
-      </div>
+    <!---------venue---------->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_API %>&libraries=places"></script>
+   
+    <div class="mb-3 mt-3">
+      <label for="autocomplete">Venue: </label>
+      <input
+        type="text"
+        class="form-control"
+        id="autocomplete"
+        name="venueName"
+        placeholder="Enter a new myFav"
+        required>
+    </div>
+
+    <script>
+      var input = document.getElementById('autocomplete');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+    </script>
     <!---------myFav Category----------->
       <div class="mb-3">
         <label for="myFavCategory" class="form-label">myFav Category (select one):</label>
@@ -42,6 +54,7 @@
       </div>
     <!---------Top tip----------->
       <div class="mb-3">
+      
         <label for="topTip" class="form-label">Top tip:</label>
         <input type="text" class="form-control" id="topTip" placeholder="Leave a top tip for the crowdShoo community" name="topTip">
         <!--how do i make this field un-ticked-->
@@ -52,3 +65,25 @@
 </div>
 
 <%- include('../partials/footer') %>
+
+
+
+  <!-- <script
+    async
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_API %>&libraries=places&callback=setAutocomplete"
+  ></script>
+    <script type="text/javascript">
+      function setAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */ (
+            document.getElementById("addressSearch")
+          ),
+          { types: ["geocode"] }
+        );
+        autocomplete.addListener("place_changed", setAddress);
+      }
+      function setAddress() {
+        var place = autocomplete.getPlace();
+      }
+    </script> -->

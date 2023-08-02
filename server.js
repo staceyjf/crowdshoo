@@ -17,7 +17,7 @@ require('./config/passport'); // connecting to passport
 var indexRouter = require('./routes/index');
 var venuesRouter = require('./routes/venues');
 var ratingsRouter = require('./routes/ratings');
-var bestTimeRouter = require('./routes/bestTimeAPI');
+var footTrafficRouter = require('./routes/footTraffic');
 
 var app = express();
 
@@ -59,7 +59,7 @@ app.use('/venues', venuesRouter);
 // Mount these routers to root because not all 
 // paths for a related/nested resource begin the same
 app.use('/', ratingsRouter);
-app.use('/', bestTimeRouter);
+app.use('/', footTrafficRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
