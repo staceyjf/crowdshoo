@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+// const fetch = require('node-fetch');
+// const { ROOT_URL, token } = require('../config/bestTimeAPI');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'crowdShoo' });
-});
+// router.get('/', function(req, res, next) {
+//   fetch(`${ROOT_URL}/${token}`, {
+//   method: 'GET'
+//   }).then(res => res.text()).then(function(data) { console.log(data); });
+// });
 
 /* GET /auth/google */
 // user will be presented the consent screen if they haven’t previously consented.
@@ -37,6 +41,3 @@ router.get('/logout', function(req, res){
 });
 
 module.exports = router;
-
-/* GET /venues - bestTime API
-*/

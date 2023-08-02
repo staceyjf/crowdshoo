@@ -6,6 +6,7 @@ var logger = require('morgan');
 var session = require('express-session'); // creates the cookie so needs a .env
 var passport = require('passport'); // hands AOut
 var methodOverride = require('method-override'); // mounting this to be able to delete
+var MongoStore = require('connect-mongo');
 
 require('dotenv').config();
 // connect to the database with AFTER the config vars are processed
@@ -16,6 +17,7 @@ require('./config/passport'); // connecting to passport
 var indexRouter = require('./routes/index');
 var venuesRouter = require('./routes/venues');
 var ratingsRouter = require('./routes/ratings');
+var bestTimeRouter = require('./routes/bestTimeAPI');
 
 var app = express();
 
@@ -35,7 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: process.env.DATABASE_URL
+  })
 }));
 
 // mounting passport
@@ -54,6 +59,7 @@ app.use('/venues', venuesRouter);
 // Mount these routers to root because not all 
 // paths for a related/nested resource begin the same
 app.use('/', ratingsRouter);
+app.use('/', bestTimeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
