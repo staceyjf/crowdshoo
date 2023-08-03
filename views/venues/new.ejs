@@ -16,8 +16,7 @@
                     <div class="bg-faded rounded p-5">
                       <form action="/venues" class="was-validated" method="POST">
 
-                        <!---------venue validator - NOT WORKING---------->
-                        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_API %>&libraries=places"></script>
+                        <!---------venue ---------->
                       
                         <div class="mb-3 mt-3">
                           <label for="autocomplete">Venue: </label>
@@ -29,11 +28,6 @@
                             placeholder="Enter a new myFav"
                             required>
                         </div>
-                    
-                        <script>
-                          var input = document.getElementById('autocomplete');
-                          var autocomplete = new google.maps.places.Autocomplete(input);
-                        </script>
 
                         <!---------myFav Category----------->
                         <div class="mb-3">
