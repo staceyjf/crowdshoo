@@ -9,27 +9,59 @@
   
 <div class="container-fluid p-5 my-0 bg-dark text-black">
     <section class="page-section about-heading">
-      <div class="container">
-          <div class="about-heading-content">
-              <div class="row">
-                  <div class="col-xl-9 col-lg-10 mx-auto">
-                        <div class="bg-faded rounded p-5">
-                        <!-- user related venue content-->
-                            <div class="row">
-                            <div class="col-sm bg-white p-3">Venue name:</div>
-                            <div class="col-sm bg-white p-3"><%= venue.venueName %></div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm bg-white p-3">myFav Category:</div>
-                                <div class="col-sm bg-white p-3"><%= venue.myFavCategory %></div>
-                        </div>
-                        <!-- try to hid button when not editing for ratings -->
-                        <div class="row">
-                            <div class="col-sm bg-white p-3">myFav Rating:</div>
-                            <div class="col-sm bg-white p-3">
-                                <%= stars %>
-                            </div>
-                            <div class="col-sm bg-white p-3">
+        <div class="container col-xl-9 mx-auto bg-faded rounded p-5 about-heading-content">
+            <div class="">
+
+            <!-- user related venue content-->
+            <table class="table">
+                <tbody class="bg-white">
+                <tr>
+                    <td>Venue name:</td>
+                    <td><%= venue.venueName %></td>
+                </tr>
+                <tr>
+                    <td>myFav Category:</td>
+                    <td><%= venue.myFavCategory %></td>
+                </tr>
+                <tr>
+                    <td>myFav Rating:</td>
+                    <td><%= stars %></td>
+                </tr>
+                <tr>
+                    <td>myFav Top tip:</td>
+                    <td><%= userRatingbyVenue.topTip %></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- rnd Community top tip -->
+            <% if (generatedRating) { %>
+                <table class="table">
+                <tbody class="bg-white">
+                    <tr>
+                        <td><strong>Insider top tip - hear from the crowd</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="<%= rndUserAvatar %>" alt="User profile pic of the insider's tip">
+                        </td>
+                        <td><%= rndTopTip %></td>
+                    </tr>
+                </tbody>
+                </table>
+            <% } %> 
+
+            <!-- EDIT YOR LISTING -->
+                <table class="table">
+                <tbody class="bg-white">
+                    <tr>
+                        <td><strong>Edit your listing</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Update your stars</td>
+                            <td>
                                 <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
                                     <div class="ratings">
                                         <input type="radio" id="star5" name="ranking" value="5" required>
@@ -44,53 +76,37 @@
                                         <label for="star1" title="1 star">&#9733;</label><br>
                                     <button type="submit" class="btn btn-primary">&times</button>
                                 </form>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm bg-white p-3">myFav Top tip:</div>
-                            <div class="col-sm bg-white p-3">
-                                <%= userRatingbyVenue.topTip %>
-                            </div>
-                            <div class="col-sm bg-white p-3">
-                                <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
-                                    <input type="text" name="topTip">
-                                    <button type="submit" class="btn btn-primary">&times;</button>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- rnd Community top tip -->
-                        <% if (generatedRating) { %>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm bg-white p-3">Insider top tip <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Update your comment</td>
+                            <td>
                                         <div class="col-sm bg-white p-3">
-                                            <img src="<%= rndUserAvatar %>" alt="User profile pic of the insider's tip">
-                                        </div>
-                                        <%= rndTopTip %>
-                                    </div>
-                                </div>
-                            </div>
-                        <% } %> 
-                        <!-- buttons -->
-                    <div class="container bg-white">
-                        <!-- <div class="row bg-white"> -->
-                            <br>
-                            <form action="/ratings/<%= venue._id %>?_method=DELETE" method="POST">
-                                <button type="submit" class="btn btn-primary">DELETE venue</button>
-                            </form>
-                            <br>
-                            <a href="/venues/myFavs" class="btn btn-primary">Back to myFav map</a>
-                            <br><br>
-                            <a href="/venues/new" class="btn btn-primary">Add another myFav</a>
-                            <br><br>
-                        <!-- </div>   -->
+                        <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
+                            <input type="text" name="topTip">
+                            <button type="submit" class="btn btn-primary">&times;</button>
+                        </form>
                     </div>
-                    <!-- Google map info -->
-                    </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- buttons -->
+                <div class="container bg-white">
+                <br>
+                <form action="/ratings/<%= venue._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-primary">DELETE venue</button>
+                </form>
+                <br>
+                <a href="/venues/myFavs" class="btn btn-primary">Back to myFav map</a>
+                <br><br>
+                <a href="/venues/new" class="btn btn-primary">Add another myFav</a>
+                <br><br>
                 </div>
+            <!-- Google map info -->
             </div>
         </div>
-    </div>
   </section>
  </div>
 
