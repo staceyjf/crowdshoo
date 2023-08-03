@@ -108,7 +108,8 @@ async function show(req, res) {
 
   // Ensure the randomly selected rating does not belong to the user
   function getRndRating(venue, user) {
-  let rndRating = venue.ratings[getRndNum(venue.ratings.length)];
+    let rndIdx = getRndNum(venue.ratings.length);
+    let rndRating = venue.ratings[rndIdx];
 
   // while the rnd user's id matches the curr user id, run the getRndNum() again
   while (rndRating.user.toString() === user._id.toString()) {
