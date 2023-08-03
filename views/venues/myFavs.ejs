@@ -7,29 +7,39 @@
   </h1>
 </header>
 
-  <!---ADD MAP HERE-->
-  <div class="container-fluid p-5 my-0 bg-dark text-white">
-    <ul class="list-group">
-      <% if (name_Cat_RankingByVenue.length > 0) { %>
-        <% for (i = 0; i < name_Cat_RankingByVenue.length; i++) {%>
-        <!---HAVE A NORMAL FOR LOOP SO YOU CAN LOOP THROUGH BOTH arrays-->
-          <li class="list-group-item">
-            <%= name_Cat_RankingByVenue[i].venueName %><br>
-            <%= name_Cat_RankingByVenue[i].myFavCat %><br>
-            <%= name_Cat_RankingByVenue[i].stars %><br>
-            <a href="/venues/<%= name_Cat_RankingByVenue[i].venueId %>" class="btn btn-primary">Details</a>
-          </li>
-        <% }; %>
-        <br>
-        <div class="container">
-        <a href="/venues/new" class="btn btn-primary">Add another myFav</a>
-      <% } else { %>
-        <p>Try add a fav</p>
-        <a href="/venues/new" class="btn btn-primary">Add a myFav</a>
+<div class="container-fluid p-5 my-0 bg-dark text-white">
+  <section class="page-section about-heading">
+    <div class="container">
+      <div class="about-heading-content">
+        <div class="row">
+          <div class="col-xl-9 col-lg-10 mx-auto">
+            <div class="bg-faded rounded p-5">
+              <ul class="list-group">
+                <% if (name_Cat_RankingByVenue.length > 0) { %>
+                  <% for (i = 0; i < name_Cat_RankingByVenue.length; i++) {%>
+                    <li class="list-group-item">
+                      <%= name_Cat_RankingByVenue[i].venueName %><br>
+                      <%= name_Cat_RankingByVenue[i].myFavCat %><br>
+                      <%= name_Cat_RankingByVenue[i].stars %><br>
+                      <a href="/venues/<%= name_Cat_RankingByVenue[i].venueId %>" class="btn btn-primary">Details</a>
+                    </li>
+                    <% }; %>
+                    <br>
+                    <div class="container">
+                        <a href="/venues/new" class="btn btn-primary">Add a Fav</a>
+                <% } else { %>
+                    <p>Try add a fav</p>
+                    <a href="/venues/new" class="btn btn-primary">Add a Fav</a>
+                    </div>
+                <% }; %>
+              </ul>
+              <br>
+            </div>
+          </div>
         </div>
-      <% }; %>
-    </ul>
-    <br>
+      </div>
+    </div>
+  </section>
 </div>
   
 <%- include('../partials/footer') %>

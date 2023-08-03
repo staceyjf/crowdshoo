@@ -2,12 +2,11 @@
 
 <header>
   <h1 class="site-heading text-center text-faded d-none d-lg-block">
-      <span class="site-heading-upper text-primary mb-3">Add</span>
-      <span class="site-heading-lower"><%= title %></span>
+    <span class="site-heading-upper text-primary mb-3">add</span>
+    <span class="site-heading-lower"><%= title %></span>
   </h1>
 </header>
 
-  <!---ADD MAP HERE-->
 <div class="container-fluid p-5 my-0 bg-dark text-black">
   <section class="page-section about-heading">
     <div class="container">
@@ -15,9 +14,9 @@
             <div class="row">
                 <div class="col-xl-9 col-lg-10 mx-auto">
                     <div class="bg-faded rounded p-5">
-                        
                       <form action="/venues" class="was-validated" method="POST">
-                        <!---------venue---------->
+
+                        <!---------venue validator - NOT WORKING---------->
                         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_API %>&libraries=places"></script>
                       
                         <div class="mb-3 mt-3">
@@ -35,45 +34,46 @@
                           var input = document.getElementById('autocomplete');
                           var autocomplete = new google.maps.places.Autocomplete(input);
                         </script>
+
                         <!---------myFav Category----------->
-                          <div class="mb-3">
-                            <label for="myFavCategory" class="form-label">myFav Category (select one):</label>
-                            <select class="form-select" id="myFavCategory" name="myFavCategory" required>
-                            <!--how do you have a default option which doesn't make the form ticked-->
-                                <option value="" disabled selected>Select a category...</option>
-                                <option value="happyhour">Happy Hour</option>
-                                <option value="familyTime">Family Time</option>
-                            </select>
-                            <div class="valid-feedback"></div>
-                            <div class="invalid-feedback">Please select relevant category</div>
-                          </div>
+                        <div class="mb-3">
+                          <label for="myFavCategory" class="form-label">myFav Category (select one):</label>
+                          <select class="form-select" id="myFavCategory" name="myFavCategory" required>
+                            <option value="" disabled selected>Select a category...</option>
+                            <option value="happyhour">Happy Hour</option>
+                            <option value="familyTime">Family Time</option>
+                          </select>
+                          <div class="valid-feedback"></div>
+                          <div class="invalid-feedback">Please select relevant category</div>
+                        </div>
                         <!---------Rating----------->
-                          <div class="mb-3">
-                            <label for="ratings" class="form-label" id="ratings">Rate this venue (select one):</label>
-                            <div class="ratings">
-                              <input type="radio" id="star5" name="ranking" value="5" required>
-                              <label for="star5" title="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</label><br>
-                              <input type="radio" id="star4" name="ranking" value="4" required>
-                              <label for="star4" title="4 stars">&#9733;&#9733;&#9733;&#9733;</label><br>
-                              <input type="radio" id="star3" name="ranking" value="3" required>
-                              <label for="star3" title="3 stars">&#9733;&#9733;&#9733;</label><br>
-                              <input type="radio" id="star2" name="ranking" value="2" required>
-                              <label for="star2" title="2 stars">&#9733;&#9733;</label><br>
-                              <input type="radio" id="star1" name="ranking" value="1" required>
-                              <label for="star1" title="1 star">&#9733;</label><br>
-                              <div class="valid-feedback"></div>
-                              <div class="invalid-feedback">Please give a rating</div>
-                            </div>
+                        <div class="mb-3">
+                          <label for="ratings" class="form-label" id="ratings">Rate this venue (select one):</label>
+                          <div class="ratings">
+                            <input type="radio" id="star5" name="ranking" value="5" required>
+                            <label for="star5" title="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</label><br>
+                            <input type="radio" id="star4" name="ranking" value="4" required>
+                            <label for="star4" title="4 stars">&#9733;&#9733;&#9733;&#9733;</label><br>
+                            <input type="radio" id="star3" name="ranking" value="3" required>
+                            <label for="star3" title="3 stars">&#9733;&#9733;&#9733;</label><br>
+                            <input type="radio" id="star2" name="ranking" value="2" required>
+                            <label for="star2" title="2 stars">&#9733;&#9733;</label><br>
+                            <input type="radio" id="star1" name="ranking" value="1" required>
+                            <label for="star1" title="1 star">&#9733;</label><br>
+                          <div class="valid-feedback"></div>
+                          <div class="invalid-feedback">Please give a rating</div>
                           </div>
+                        </div>
+
                         <!---------Top tip----------->
                           <div class="mb-3">
                             <label for="topTip" class="form-label">Top tip:</label>
                             <input type="text" class="form-control" id="topTip" placeholder="Leave a top tip for the crowdShoo community" name="topTip">
                             <!--how do i make this field un-ticked-->
                           </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                          <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
-                    </div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -83,23 +83,3 @@
 </div>
 
 <%- include('../partials/footer') %></section>
-
-  <!-- <script
-    async
-    defer
-    src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAP_API %>&libraries=places&callback=setAutocomplete"
-  ></script>
-    <script type="text/javascript">
-      function setAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(
-          /** @type {!HTMLInputElement} */ (
-            document.getElementById("addressSearch")
-          ),
-          { types: ["geocode"] }
-        );
-        autocomplete.addListener("place_changed", setAddress);
-      }
-      function setAddress() {
-        var place = autocomplete.getPlace();
-      }
-    </script> -->
