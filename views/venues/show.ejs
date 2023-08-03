@@ -1,107 +1,100 @@
 <%- include('../partials/header') %>
 
 <header>
-    <h1 class="site-heading text-center text-faded d-none d-lg-block">
-        <span class="site-heading-upper text-primary mb-3">SEE</span>
-        <span class="site-heading-lower"><%= title %></span>
-    </h1>
-  </header>
+  <h1 class="site-heading text-center text-faded d-none d-lg-block">
+      <span class="site-heading-upper text-primary mb-3">See</span>
+      <span class="site-heading-lower"><%= title %></span>
+  </h1>
+</header>
   
-<!---ADD MAP HERE-->
-<div class="container-fluid p-5 my-0 bg-dark text-white">
-  <section class="page-section about-heading">
-    <div class="container">
-        <div class="about-heading-content">
-            <div class="row">
-                <div class="col-xl-9 col-lg-10 mx-auto">
-                    <div class="bg-faded rounded p-5">
+<div class="container-fluid p-5 my-0 bg-dark text-black">
+    <section class="page-section about-heading">
+      <div class="container">
+          <div class="about-heading-content">
+              <div class="row">
+                  <div class="col-xl-9 col-lg-10 mx-auto">
+                        <div class="bg-faded rounded p-5">
                         <!-- user related venue content-->
                             <div class="row">
-                                <div class="col-sm bg-dark text-white p-3">Venue name:</div>
-                                <div class="col-sm bg-dark text-white p-3"><%= venue.venueName %></div>
+                            <div class="col-sm bg-white p-3">Venue name:</div>
+                            <div class="col-sm bg-white p-3"><%= venue.venueName %></div>
                             </div> 
                             <div class="row">
-                                <div class="col-sm bg-dark text-white p-3">myFav Category:</div>
-                                <div class="col-sm bg-dark text-white p-3"><%= venue.myFavCategory %></div>
-                            </div>
+                                <div class="col-sm bg-white p-3">myFav Category:</div>
+                                <div class="col-sm bg-white p-3"><%= venue.myFavCategory %></div>
+                        </div>
                         <!-- try to hid button when not editing for ratings -->
-                            <div class="row">
-                                <div class="col-sm bg-dark text-white p-3">myFav Rating:</div>
-                                <div class="col-sm bg-dark text-white p-3">
-                                    <%= stars %>
-                                </div>
-                                <div class="col-sm bg-dark text-white p-3">
-                                    <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
-                                        <div class="ratings">
-                                            <input type="radio" id="star5" name="ranking" value="5" required>
-                                            <label for="star5" title="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</label><br>
-                                            <input type="radio" id="star4" name="ranking" value="4" required>
-                                            <label for="star4" title="4 stars">&#9733;&#9733;&#9733;&#9733;</label><br>
-                                            <input type="radio" id="star3" name="ranking" value="3" required>
-                                            <label for="star3" title="3 stars">&#9733;&#9733;&#9733;</label><br>
-                                            <input type="radio" id="star2" name="ranking" value="2" required>
-                                            <label for="star2" title="2 stars">&#9733;&#9733;</label><br>
-                                            <input type="radio" id="star1" name="ranking" value="1" required>
-                                            <label for="star1" title="1 star">&#9733;</label><br>
-                                        <button type="submit" class="btn btn-primary">&times</button>
-                                    </form>
-                                </div>
+                        <div class="row">
+                            <div class="col-sm bg-white p-3">myFav Rating:</div>
+                            <div class="col-sm bg-white p-3">
+                                <%= stars %>
                             </div>
-                            <div class="row">
-                                <div class="col-sm bg-dark text-white p-3">myFav Top tip:</div>
-                                <div class="col-sm bg-dark text-white p-3">
-                                    <%= userRatingbyVenue.topTip %>
-                                </div>
-                                <div class="col-sm bg-dark text-white p-3">
-                                    <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
-                                        <input type="text" name="topTip">
-                                        <button type="submit" class="btn btn-primary">&times</button>
-                                    </form>
-                                </div>
+                            <div class="col-sm bg-white p-3">
+                                <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
+                                    <div class="ratings">
+                                        <input type="radio" id="star5" name="ranking" value="5" required>
+                                        <label for="star5" title="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</label><br>
+                                        <input type="radio" id="star4" name="ranking" value="4" required>
+                                        <label for="star4" title="4 stars">&#9733;&#9733;&#9733;&#9733;</label><br>
+                                        <input type="radio" id="star3" name="ranking" value="3" required>
+                                        <label for="star3" title="3 stars">&#9733;&#9733;&#9733;</label><br>
+                                        <input type="radio" id="star2" name="ranking" value="2" required>
+                                        <label for="star2" title="2 stars">&#9733;&#9733;</label><br>
+                                        <input type="radio" id="star1" name="ranking" value="1" required>
+                                        <label for="star1" title="1 star">&#9733;</label><br>
+                                    <button type="submit" class="btn btn-primary">&times</button>
+                                </form>
                             </div>
-                            <!-- rnd Community top tip -->
-                            <% if (generatedRating) { %>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-sm bg-dark text-white p-3">Insider top tip <br>
-                                            <div class="col-sm bg-dark text-white p-3">
-                                                <img src="<%= rndUserAvatar %>" alt="User profile pic of the insider's tip">
-                                            </div>
-                                            <%= rndTopTip %>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm bg-white p-3">myFav Top tip:</div>
+                            <div class="col-sm bg-white p-3">
+                                <%= userRatingbyVenue.topTip %>
+                            </div>
+                            <div class="col-sm bg-white p-3">
+                                <form action="/ratings/<%= venue._id %>?_method=PUT" method="POST">
+                                    <input type="text" name="topTip">
+                                    <button type="submit" class="btn btn-primary">&times</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- rnd Community top tip -->
+                        <% if (generatedRating) { %>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm bg-white p-3">Insider top tip <br>
+                                        <div class="col-sm bg-white p-3">
+                                            <img src="<%= rndUserAvatar %>" alt="User profile pic of the insider's tip">
                                         </div>
+                                        <%= rndTopTip %>
                                     </div>
                                 </div>
-                            <% } %> 
+                            </div>
+                        <% } %> 
                         <!-- buttons -->
-                        <div class="container">
-                            <div class="row">
-                            
+                    <div class="container bg-white">
+                        <!-- <div class="row bg-white"> -->
                             <!-- <form action="/venues/<%= venue._id %>?_method=DELETE" method="POST">
                                 <button type="submit">Edit venue</button>
                             </form> -->
-
                             <br>
                             <form action="/ratings/<%= venue._id %>?_method=DELETE" method="POST">
                                 <button type="submit" class="btn btn-primary">DELETE venue</button>
                             </form>
-
                             <br>
                             <a href="/venues/myFavs" class="btn btn-primary">Back to myFav map</a>
                             <br><br>
                             <a href="/venues/new" class="btn btn-primary">Add another myFav</a>
-                        </div>  
+                            <br><br>
+                        <!-- </div>   -->
                     </div>
-                        <!-- Google map info -->
-
-
-  <!-- will need to hid this when not editing -->
-
+                    <!-- Google map info -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
   </section>
-  </div>
+ </div>
 
 <%- include('../partials/footer') %>
