@@ -57,7 +57,7 @@ Reviews
 
 <div align="center">
 ERD <br>
-<img src="images/datav2.png" width="400" height="400">
+<img src="./public/images/datav2.png" width="400" height="400">
 <br>
 1:M
 - review to users
@@ -75,7 +75,7 @@ M:M
 ## Data Screengrabs
 | User's favourite venuesView                                                                      | OAuth View                                                                                    | Add View                                                                       | Project Management                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| <img src="images/myFav.png" title="User's curated venue list"> | <img src="images/OAuth.png" title="OAuth log in page" /> | <img src="images/addVenue.png" title="Add a view view" /> | <img src="images/trello.png" title="View of project board" /> |
+| <img src="./public/images/myFav.png" title="User's curated venue list"> | <img src="./public/images/OAuth.png" title="OAuth log in page" /> | <img src="./public/images/addVenue.png" title="Add a view view" /> | <img src="./public/images/trello.png" title="View of project board" /> |
 
 </div>
 
