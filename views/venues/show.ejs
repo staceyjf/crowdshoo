@@ -43,10 +43,15 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>
+                        <% if (rndUserAvatar) { %>  
+                            <td>
                             <img src="<%= rndUserAvatar %>" alt="User profile pic of the insider's tip">
-                        </td>
-                        <td><%= rndTopTip %></td>
+                            </td>
+                            <td><%= rndTopTip %></td>
+                        <% } else { %>
+                            <td></td>
+                            <td></td>
+                            <% } %>
                     </tr>
                 </tbody>
                 </table>
