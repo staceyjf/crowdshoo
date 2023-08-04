@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img src="images/homePg.png" width="700" height="400">
+  <img src="./public/images/homePg.png" width="700" height="400">
 
 </div>
 
