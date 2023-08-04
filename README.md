@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img src="../CrowdShoo/public/images/homePg.png" width="700" height="400">
+  <img src="images/homePg.png" width="700" height="400">
 
 </div>
 
@@ -57,7 +57,7 @@ Reviews
 
 <div align="center">
 ERD <br>
-<img src="../CrowdShoo/public/images/datav2.png" width="400" height="400">
+<img src="images/datav2.png" width="400" height="400">
 <br>
 1:M
 - review to users
@@ -75,7 +75,7 @@ M:M
 ## Data Screengrabs
 | User's favourite venuesView                                                                      | OAuth View                                                                                    | Add View                                                                       | Project Management                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| <img src="../CrowdShoo/public/images/myFav.png" title="User's curated venue list"> | <img src="../CrowdShoo/public/images/OAuth.png" title="OAuth log in page" /> | <img src="../CrowdShoo/public/images/addVenue.png" title="Add a view view" /> | <img src="../CrowdShoo/public/images/trello.png" title="View of project board" /> |
+| <img src="images/myFav.png" title="User's curated venue list"> | <img src="images/OAuth.png" title="OAuth log in page" /> | <img src="images/addVenue.png" title="Add a view view" /> | <img src="images/trello.png" title="View of project board" /> |
 
 </div>
 
