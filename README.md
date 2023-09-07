@@ -1,4 +1,4 @@
-# crowdShoo
+# eventHub
 
 <div align="center">
 
@@ -19,8 +19,6 @@ This web-based application provides a centralized venue database that:
 The application performs user centric CRUD (Create, Read, Update, Delete) operations following REST-ful conventions for managing resources (GET, POST, DELETE, PUT best practice).
 
 ## About the Web App
-
-At CrowdShoo, we help you ‘shoo’ away from crowded places, allowing you to enjoy your favorite venues without the hassle of large crowds. crowd sourced comments included...
 
 Add venues that you love to your own curated Favourite's list. Complied in easy to view list - you'll never have to randomly google or search through the depths of your mind to find a venue you love.
 
